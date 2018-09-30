@@ -1,5 +1,5 @@
 
-import urllib
+import urllib, re
 import mysql
 from bs4 import BeautifulSoup
 import config
@@ -45,10 +45,11 @@ class Spider:
         """
         page = urllib.urlopen(href)
         soup = BeautifulSoup(page, "html.parser")
-        temp = soup.find(class_="small-centered small-12 columns")
-        content = temp.div.find_all('p',recursive=False)
+        # temp = soup.find(class_="small-centered small-12 columns")
+        temp = soup.find(class_=re.compile("story-two eza-body*"))
+        content = temp.find_all('p',recursive=False)
         return content
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")
-# spider1.contentOfArtical("http://127.0.0.1/actical.html")
+# print spider1.contentOfArtical("https://www.csmonitor.com/World/Europe/2018/0928/Macedonians-vote-on-their-country-s-name.-Will-they-follow-heart-or-head")
 # spider1.Getlist();
