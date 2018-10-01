@@ -28,5 +28,5 @@ class email:
         for to in config.emailtouser:
             self.send(to, config.emailSubject, text)
 
-e = email()
-e.send("1428132225@qq.com", "english", "hahah")
+# e = email()
+# e.send("1428132225@qq.com", "english", "hahah")

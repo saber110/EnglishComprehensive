@@ -6,7 +6,8 @@ from Spider import Spider
 from wordsDeal import wordsDeal
 from myEmail import email
 def going(url):
-    text = wordsDeal()
+    mail = email()
+	text = wordsDeal()
     spider1 = Spider(url, 'test')
     hrefs = spider1.hrefFor2018()
     for item in hrefs:
@@ -23,6 +24,8 @@ def going(url):
         else:		
             print wordNum," | ",item['title']
     del spider1
+	del text
+	del mail
 
 def sqlQuery(sql = ""):
     db = mysql.connect()
@@ -30,7 +33,6 @@ def sqlQuery(sql = ""):
     mysql.close(db)
 
 def main():
-    mail = email()
     for item in config.category:
         try:
             going(item)
