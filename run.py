@@ -9,12 +9,17 @@ def going(url):
     spider1 = Spider(url, 'test')
     hrefs = spider1.hrefFor2018()
     for item in hrefs:
-        content = str(spider1.contentOfArtical(item['href']))
-        wordNum = text.getNumber(content)
-        if wordNum > config.minimum and wordNum < config.maximum:
-            query = "insert into Christian(href,title, content) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content) + "');"
-            sqlQuery(query)
-	    print item['title'], "|" , wordNum
+		try:
+			content = str(spider1.contentOfArtical(item['href']))
+			wordNum = text.getNumber(content)
+			if wordNum > config.minimum and wordNum < config.maximum:
+				query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content) + "','" + str(wordNum) + "');"
+				sqlQuery(query)
+		except BaseException as error:
+			query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
+			sqlQuery(query)
+		else:		
+			print wordNum," | ",item['title']
     del spider1
 
 def sqlQuery(sql = ""):
@@ -24,6 +29,9 @@ def sqlQuery(sql = ""):
 
 def main():
     for item in config.category:
-        going(item)
+		try:
+			going(item)
+		except BaseException as error:
+			print error
 
 main()
