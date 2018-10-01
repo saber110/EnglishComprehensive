@@ -17,7 +17,7 @@ def going(url):
             if wordNum > config.minimum and wordNum < config.maximum:
                 query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content) + "','" + str(wordNum) + "');"
                 sqlQuery(query)
-                mail.sendAuto(text.sqlEscape(content))
+                mail.sendAuto(content)
         except BaseException as error:
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
             sqlQuery(query)

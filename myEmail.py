@@ -9,8 +9,8 @@ class email:
         self.user = config.emailuser
         self.pwd  = config.emailpwd
     
-    def send(self, to, subject, text):
-        msg = MIMEText(text)
+    def send(self, to, subject, text, type="plain", code="utf-8"):
+        msg = MIMEText(text, type, code)
         msg["Subject"] = subject
         msg["From"] =  self.user
         msg["To"] = to
@@ -26,8 +26,7 @@ class email:
     
     def sendAuto(self,text):
         for to in config.emailtouser:
-            self.send(to, config.emailSubject, text)
+            self.send(to, config.emailSubject, text, "html")
 
 # e = email()
 # e.send("1428132225@qq.com", "english", "hahah")
-# e.sendAuto("test")
