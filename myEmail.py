@@ -24,9 +24,10 @@ class email:
         except smtplib.SMTPException as e:
             print ("Falied,%s" %e)
     
-    def sendAuto(text):
+    def sendAuto(self,text):
         for to in config.emailtouser:
             self.send(to, config.emailSubject, text)
 
 # e = email()
 # e.send("1428132225@qq.com", "english", "hahah")
+# e.sendAuto("test")
