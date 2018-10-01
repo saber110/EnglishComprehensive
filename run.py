@@ -7,7 +7,7 @@ from wordsDeal import wordsDeal
 from myEmail import email
 def going(url):
     mail = email()
-	text = wordsDeal()
+    text = wordsDeal()
     spider1 = Spider(url, 'test')
     hrefs = spider1.hrefFor2018()
     for item in hrefs:
@@ -24,8 +24,8 @@ def going(url):
         else:		
             print wordNum," | ",item['title']
     del spider1
-	del text
-	del mail
+    del text
+    del mail
 
 def sqlQuery(sql = ""):
     db = mysql.connect()
