@@ -11,18 +11,18 @@ def going(url):
     spider1 = Spider(url, 'test')
     hrefs = spider1.hrefFor2018()
     for item in hrefs:
-        try:
-            content = spider1.contentOfArtical(item['href'])
-            wordNum = text.getNumber(content['content'])
-            if wordNum > config.minimum and wordNum < config.maximum:
-                query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "');"
-                sqlQuery(query)
-                mail.sendAuto(content['title'], content['content'])
-        except BaseException as error:
-            query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
+        # try:
+        content = spider1.contentOfArtical(item['href'])
+        wordNum = text.getNumber(content['content'])
+        if wordNum > config.minimum and wordNum < config.maximum:
+            query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "');"
             sqlQuery(query)
-        else:
-            print wordNum," | ",item['title']
+            mail.sendAuto(content['title'], content['content'])
+        # except BaseException as error:
+        #     query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
+        #     sqlQuery(query)
+        # else:
+        #     print wordNum," | ",item['title']
     del spider1
     del text
     del mail
