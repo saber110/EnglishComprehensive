@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 class wordsDeal:
     '字处理模块'
     def __init__(self):

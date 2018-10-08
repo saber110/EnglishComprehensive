@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import MySQLdb
 import config
 import MySQLdb.cursors
@@ -23,4 +26,3 @@ def query(db,query):
 
 def close(db):
     db.close()
-

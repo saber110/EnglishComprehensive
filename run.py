@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import mysql, config
 import urllib
 from bs4 import BeautifulSoup
