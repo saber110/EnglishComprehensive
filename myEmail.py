@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import config
 import smtplib
 from email.mime.text import MIMEText
@@ -8,7 +8,7 @@ class email:
     def __init__(self):
         self.user = config.emailuser
         self.pwd  = config.emailpwd
-    
+
     def send(self, to, subject, text, type="plain", code="utf-8"):
         msg = MIMEText(text, type, code)
         msg["Subject"] = subject
@@ -23,10 +23,11 @@ class email:
             print("Success!")
         except smtplib.SMTPException as e:
             print ("Falied,%s" %e)
-    
-    def sendAuto(self,text):
+
+    def sendAuto(self,title,text):
         for to in config.emailtouser:
-            self.send(to, config.emailSubject, text, "html")
+            self.send(to, title, text, "html")
 
 # e = email()
 # e.send("1428132225@qq.com", "english", "hahah")
+# e.sendAuto("""g""")

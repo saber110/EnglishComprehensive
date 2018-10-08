@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import urllib, re
 import mysql
 from bs4 import BeautifulSoup
@@ -28,7 +28,7 @@ class Spider:
             temp    = {'href' : self.domain + href, "title" : title[0].strip() }
             result.append(temp)
         return result
-    
+
     def hrefFor2018(self):
         """
         the artical`s href published in 2018
@@ -43,13 +43,20 @@ class Spider:
         """
         get the contents of linked by the href
         """
+        result = []
         page = urllib.urlopen(href)
         soup = BeautifulSoup(page, "html.parser")
         # temp = soup.find(class_="small-centered small-12 columns")
+        title = soup.find(id="headline").get_text()
+        title = title.strip().encode("utf8")
         temp = soup.find(class_=re.compile("story-two eza-body*"))
         content = temp.find_all('p',recursive=False)
-        return content
+        for item in content:
+            result.append(item.encode("utf8"))
+        contents = ''.join(result)
+        dict = {'title':title,'content':contents}
+        return dict
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")
-# print spider1.contentOfArtical("https://www.csmonitor.com/World/Europe/2018/0928/Macedonians-vote-on-their-country-s-name.-Will-they-follow-heart-or-head")
+# print spider1.contentOfArtical("http://127.0.0.1/test1.html")
 # spider1.Getlist();

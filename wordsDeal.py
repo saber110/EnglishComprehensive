@@ -19,3 +19,4 @@ class wordsDeal:
 
 # a = wordsDeal()
 # a.getNumber("JM is a big pig, so what is your ")
+# a.sqlEscape("hello , 'aaa'")
