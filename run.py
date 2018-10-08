@@ -15,7 +15,7 @@ def going(url):
             content = spider1.contentOfArtical(item['href'])
             wordNum = text.getNumber(content['content'])
             if wordNum > config.minimum and wordNum < config.maximum:
-                query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content) + "','" + str(wordNum) + "');"
+                query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "');"
                 sqlQuery(query)
                 mail.sendAuto(content['title'], content['content'])
         except BaseException as error:
