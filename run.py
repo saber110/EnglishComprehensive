@@ -13,7 +13,7 @@ def going(url):
     for item in hrefs:
         try:
             content = spider1.contentOfArtical(item['href'])
-            wordNum = text.getNumber(content)
+            wordNum = text.getNumber(content['content'])
             if wordNum > config.minimum and wordNum < config.maximum:
                 query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content) + "','" + str(wordNum) + "');"
                 sqlQuery(query)
