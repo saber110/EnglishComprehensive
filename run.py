@@ -16,7 +16,8 @@ def going(url):
     for item in hrefs:
         try:
             content = spider1.contentOfArtical(item['href'])
-            if content != False:
+            print content
+            if content != "F":
                 query = "insert into Christian(href,title, content, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + config.notSend +"');"
                 sqlQuery(query)
                 print "YES ", item['title']

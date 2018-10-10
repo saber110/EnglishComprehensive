@@ -60,6 +60,7 @@ class Spider:
         for item in content:
             number.append(item.encode("utf8"))
         numbers = text.getNumber(''.join(number))
+        del text
         print "-----------------------", numbers, "-----------------------"
         if numbers > config.minimum and numbers < config.maximum:
             for item in content:
@@ -69,8 +70,7 @@ class Spider:
             contents = ''.join(result)
             dict = {'title':title,'content':contents}
         else:
-            return False
-        del text
+            return "F"
         return dict
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")
