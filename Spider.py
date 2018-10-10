@@ -3,7 +3,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import urllib, re
-import mysql
+import mysql, myTranslate
 from bs4 import BeautifulSoup
 import config
 
@@ -55,11 +55,13 @@ class Spider:
         temp = soup.find(class_=re.compile("story-two eza-body*"))
         content = temp.find_all('p',recursive=False)
         for item in content:
+            Chinese = myTranslate.TransToChinese(item.encode("utf8"))
             result.append(item.encode("utf8"))
+            result.append(Chinese)
         contents = ''.join(result)
         dict = {'title':title,'content':contents}
         return dict
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")
-# print spider1.contentOfArtical("http://127.0.0.1/test1.html")
+# print spider1.contentOfArtical("https://www.csmonitor.com/USA/Society/2018/0911/Black-women-say-they-empathize-with-Serena-Williams-s-treatment")
 # spider1.Getlist();

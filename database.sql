@@ -9,6 +9,7 @@ create table if not exists `Christian`(
 	`content` TEXT NOT NULL,
 	`wordNum` INT UNSIGNED,
 	`time` TIMESTAMP NOT NULL,
+	`sent` char,
 	PRIMARY KEY(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -20,3 +21,10 @@ create table if not exists `SpiderExcept`(
 	PRIMARY KEY(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- create table if not exists `EmailSend`(
+-- 	`id` INT UNSIGNED AUTO_INCREMENT,
+-- 	`title` text NOT NULL,
+-- 	`content` text not null,
+-- 	`sent` char,
+-- 	PRIMARY KEY(`id`)
+-- )ENGINE=InnoDB DEFAULT CHARSET=utf8;

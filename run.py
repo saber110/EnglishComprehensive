@@ -2,7 +2,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-import mysql, config, myTranslate
+import mysql, config
 import urllib
 from bs4 import BeautifulSoup
 from Spider import Spider
@@ -18,10 +18,9 @@ def going(url):
             content = spider1.contentOfArtical(item['href'])
             wordNum = text.getNumber(content['content'])
             if wordNum > config.minimum and wordNum < config.maximum:
-                query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "');"
+                query = "insert into Christian(href,title, content, wordNum, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "','" + config.notSend +"');"
                 sqlQuery(query)
-                Chinese = myTranslate.TransToChinese(content['content'])
-                mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
+                # mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
         except BaseException as error:
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
             sqlQuery(query)
