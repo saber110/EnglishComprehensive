@@ -7,7 +7,6 @@ create table if not exists `Christian`(
 	`href` VARCHAR(250) NOT NULL,
 	`title` VARCHAR(250) NOT NULL,
 	`content` TEXT NOT NULL,
-	`wordNum` INT UNSIGNED,
 	`time` TIMESTAMP NOT NULL,
 	`sent` char,
 	PRIMARY KEY(`id`)

@@ -24,7 +24,7 @@ def going(url):
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
             sqlQuery(query)
         else:
-            print wordNum," | ",item['title']
+            print item['title']
     del spider1
     del text
     del mail
