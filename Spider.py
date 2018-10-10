@@ -47,7 +47,8 @@ class Spider:
         """
         get the contents of linked by the href
         """
-        result = [], number = []
+        result = []
+        number = []
         text = wordsDeal()
         page = urllib.urlopen(href)
         soup = BeautifulSoup(page, "html.parser")
@@ -71,6 +72,6 @@ class Spider:
         del text
         return dict
 
-# spider1 = Spider("http://127.0.0.1/Lists.html", "test")
-# print spider1.contentOfArtical("https://www.csmonitor.com/USA/Society/2018/0911/Black-women-say-they-empathize-with-Serena-Williams-s-treatment")
+spider1 = Spider("http://127.0.0.1/Lists.html", "test")
+print spider1.contentOfArtical("https://www.csmonitor.com/USA/Society/2018/0911/Black-women-say-they-empathize-with-Serena-Williams-s-treatment")
 # spider1.Getlist();

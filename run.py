@@ -16,7 +16,7 @@ def going(url):
     for item in hrefs:
         try:
             content = spider1.contentOfArtical(item['href'])
-            if content != False
+            if content != False:
                 query = "insert into Christian(href,title, content, wordNum, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "','" + config.notSend +"');"
                 sqlQuery(query)
                 # mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
