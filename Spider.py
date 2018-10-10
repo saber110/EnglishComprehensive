@@ -70,7 +70,7 @@ class Spider:
             contents = ''.join(result)
             dict = {'title':title,'content':contents}
         else:
-            return "F"
+            dict = {'title':title,'content':"contents"}
         return dict
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")

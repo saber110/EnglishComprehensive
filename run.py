@@ -16,8 +16,7 @@ def going(url):
     for item in hrefs:
         try:
             content = spider1.contentOfArtical(item['href'])
-            print content
-            if content == "F":
+            if content['content'] == "contents":
                 print "NO ", item['title']
         except BaseException as error:
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
