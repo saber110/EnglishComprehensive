@@ -17,7 +17,7 @@ def going(url):
         try:
             content = spider1.contentOfArtical(item['href'])
             if content != False:
-                query = "insert into Christian(href,title, content, wordNum, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "','" + config.notSend +"');"
+                query = "insert into Christian(href,title, content, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + config.notSend +"');"
                 sqlQuery(query)
                 # mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
         except BaseException as error:
