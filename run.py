@@ -2,7 +2,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-import mysql, config
+import mysql, config, myTranslate
 import urllib
 from bs4 import BeautifulSoup
 from Spider import Spider
@@ -20,7 +20,8 @@ def going(url):
             if wordNum > config.minimum and wordNum < config.maximum:
                 query = "insert into Christian(href,title, content, wordNum) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + str(wordNum) + "');"
                 sqlQuery(query)
-                mail.sendAuto(content['title'], content['content'])
+                Chinese = myTranslate.TransToChinese(content['content'])
+                mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
         except BaseException as error:
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
             sqlQuery(query)
