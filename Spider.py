@@ -5,6 +5,7 @@ sys.setdefaultencoding('utf-8')
 import urllib, re
 import mysql, myTranslate
 from bs4 import BeautifulSoup
+from wordsDeal import wordsDeal
 import config
 
 class Spider:
@@ -46,7 +47,8 @@ class Spider:
         """
         get the contents of linked by the href
         """
-        result = []
+        result = [], number = []
+        text = wordsDeal()
         page = urllib.urlopen(href)
         soup = BeautifulSoup(page, "html.parser")
         # temp = soup.find(class_="small-centered small-12 columns")
@@ -55,11 +57,18 @@ class Spider:
         temp = soup.find(class_=re.compile("story-two eza-body*"))
         content = temp.find_all('p',recursive=False)
         for item in content:
-            Chinese = myTranslate.TransToChinese(item.encode("utf8"))
-            result.append(item.encode("utf8"))
-            result.append(Chinese)
-        contents = ''.join(result)
-        dict = {'title':title,'content':contents}
+            number.append(item.encode("utf8"))
+        numbers = text.getNumber(''.join(number))
+        if numbers > config.minimum and numbers < config.maximum:
+            for item in content:
+                Chinese = myTranslate.TransToChinese(item.encode("utf8"))
+                result.append(item.encode("utf8"))
+                result.append(Chinese)
+            contents = ''.join(result)
+            dict = {'title':title,'content':contents}
+        else:
+            return False
+        del text
         return dict
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")
