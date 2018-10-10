@@ -60,6 +60,7 @@ class Spider:
         for item in content:
             number.append(item.encode("utf8"))
         numbers = text.getNumber(''.join(number))
+        print "-----------------------", numbers, "-----------------------"
         if numbers > config.minimum and numbers < config.maximum:
             for item in content:
                 Chinese = myTranslate.TransToChinese(item.encode("utf8"))
@@ -73,5 +74,5 @@ class Spider:
         return dict
 
 # spider1 = Spider("http://127.0.0.1/Lists.html", "test")
-# print spider1.contentOfArtical("https://www.csmonitor.com/USA/Society/2018/0911/Black-women-say-they-empathize-with-Serena-Williams-s-treatment")
+# print spider1.contentOfArtical("https://www.csmonitor.com/Commentary/the-monitors-view/2018/1002/Amazon-sets-a-high-bar-on-wages")
 # spider1.Getlist();

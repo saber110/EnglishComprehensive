@@ -19,7 +19,7 @@ def going(url):
             if content != False:
                 query = "insert into Christian(href,title, content, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + config.notSend +"');"
                 sqlQuery(query)
-                print item['title']
+                print "YES ", item['title']
                 # mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
         except BaseException as error:
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
