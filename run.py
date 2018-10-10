@@ -16,16 +16,16 @@ def going(url):
     for item in hrefs:
         try:
             content = spider1.contentOfArtical(item['href'])
-            if content['content'] == "contents":
-                print "NO ", item['title']
+            if content['content'] != "contents":
+                query = "insert into Christian(href,title, content, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + config.notSend +"');"
+                sqlQuery(query)
+                print "YES ", item['title']
+                # mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
         except BaseException as error:
             query = "insert into SpiderExcept(href,except) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(str(error)) +"');"
             sqlQuery(query)
         else:
-            query = "insert into Christian(href,title, content, sent) values ( '" + text.sqlEscape(item['href']) + "','" + text.sqlEscape(item['title']) + "','" + text.sqlEscape(content['content']) + "','" + config.notSend +"');"
-            sqlQuery(query)
-            print "YES ", item['title']
-            # mail.sendAuto(content['title'], content['content'] + '<p>' + Chinese + '</p>')
+            print "NO ", item['title']
     del spider1
     del text
     del mail
