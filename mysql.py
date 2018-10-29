@@ -11,7 +11,7 @@ def connect():
     db=MySQLdb.connect(config.host, config.username, config.password, config.database, charset='utf8',cursorclass=MySQLdb.cursors.DictCursor)
     return db
 
-def getData(db, query, table):
+def getData(db, query, table=""):
     c=db.cursor()
     c.execute(query)
     data = c.fetchall()

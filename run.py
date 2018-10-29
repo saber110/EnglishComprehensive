@@ -36,10 +36,33 @@ def sqlQuery(sql = ""):
     mysql.close(db)
 
 def main():
-    for item in config.category:
-        try:
-            going(item)
-        except BaseException as error:
-            print error
+    offset = 920
+    category = ["https://www.csmonitor.com/USA/(offset)/"+str(offset)+"/(view)/all", \
+"https://www.csmonitor.com/World/(offset)/"+str(offset)+"/(view)/all", \
+"https://www.csmonitor.com/Commentary/(offset)/"+str(offset/2)+"/(view)/all", \
+"https://www.csmonitor.com/Science/(offset)/"+str(offset/20)+"/(view)/all", \
+"https://www.csmonitor.com/Business/(offset)/"+str(offset/7)+"/(view)/all", \
+"https://www.csmonitor.com/Environment/(offset)/"+str(offset/6)+"/(view)/all", \
+"https://www.csmonitor.com/Technology/(offset)/"+str(offset/11)+"/(view)/all", \
+"https://www.csmonitor.com/The-Culture/(offset)/"+str(offset/3)+"/(view)/all", \
+"https://www.csmonitor.com/Books/(offset)/"+str(offset/4)+"/(view)/all"]
+    while offset >= 20:
+        #print "offset", offset
+        #a = raw_input("input")
+        for item in category:
+            try:
+                going(item)
+            except BaseException as error:
+                print error
+        offset = offset - 20
+        category = ["https://www.csmonitor.com/USA/(offset)/"+str(offset)+"/(view)/all", \
+"https://www.csmonitor.com/World/(offset)/"+str(offset)+"/(view)/all", \
+"https://www.csmonitor.com/Commentary/(offset)/"+str(offset/2)+"/(view)/all", \
+"https://www.csmonitor.com/Science/(offset)/"+str(offset/20)+"/(view)/all", \
+"https://www.csmonitor.com/Business/(offset)/"+str(offset/7)+"/(view)/all", \
+"https://www.csmonitor.com/Environment/(offset)/"+str(offset/6)+"/(view)/all", \
+"https://www.csmonitor.com/Technology/(offset)/"+str(offset/11)+"/(view)/all", \
+"https://www.csmonitor.com/The-Culture/(offset)/"+str(offset/3)+"/(view)/all", \
+"https://www.csmonitor.com/Books/(offset)/"+str(offset/4)+"/(view)/all"]
 
 main()
