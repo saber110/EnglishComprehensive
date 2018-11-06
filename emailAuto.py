@@ -37,6 +37,3 @@ class emailAuto(object):
         for item in set:
             mail.sendAuto(item['title'], item['content'])
             self.queryMysql(self.SqlInstruct(id = item['id'], func = "update"))
-
-test1 = emailAuto()
-test1.test()
